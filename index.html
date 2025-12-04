@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
 
 <head>
@@ -308,4 +308,295 @@
 
 </body>
 
+</html> -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WebRTC Audio Self-Test</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#10b981;--muted:#94a3b8;--glass:rgba(255,255,255,0.03)}
+    body{font-family:Inter,ui-sans-serif,system-ui,Helvetica,Arial;margin:0;background:linear-gradient(180deg,#071025 0%,#081426 100%);color:#e6eef6}
+    .container{max-width:980px;margin:28px auto;padding:20px}
+    .card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    h1{margin:0 0 8px 0;font-size:20px}
+    p.muted{color:var(--muted);margin:6px 0 0}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    button{background:var(--accent);border:none;padding:10px 12px;border-radius:8px;color:#042024;cursor:pointer;font-weight:600}
+    button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#cfe7dd}
+    pre{background:var(--glass);padding:10px;border-radius:8px;overflow:auto;color:#cfe7dd}
+    table{width:100%;border-collapse:collapse}
+    td,th{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
+    .meter{height:12px;border-radius:6px;background:rgba(255,255,255,0.06);overflow:hidden}
+    .meter > i{display:block;height:100%;width:0;background:linear-gradient(90deg,#22c55e,#06b6d4)}
+    .flex{display:flex;align-items:center;gap:8px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{font-size:13px;color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>WebRTC Audio Self-Test</h1>
+      <p class="muted">Quick diagnostics: device capabilities, browser-applied processing, meters, loopback test and downloadable sample.</p>
+    </div>
+
+    <div class="card row">
+      <div style="flex:1">
+        <div class="flex" style="justify-content:space-between;align-items:center">
+          <div>
+            <button id="btnStart">Start Test</button>
+            <button id="btnStop" class="secondary">Stop</button>
+            <button id="btnLoopback" class="secondary">Run Loopback</button>
+            <button id="btnDownload" class="secondary">Download Sample</button>
+          </div>
+          <div class="small">Status: <span id="status">idle</span></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>Input Level</label>
+          <div class="meter" aria-hidden><i id="levelBar"></i></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px"><span class="small">RMS</span><span id="rmsValue" class="small">0.00</span></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>Raw Console Output</label>
+          <pre id="log" style="height:140px">Console output will appear here...</pre>
+        </div>
+      </div>
+
+      <div style="width:360px">
+        <div style="margin-bottom:8px"><strong>Track Settings (applied)</strong></div>
+        <pre id="settings">-</pre>
+
+        <div style="margin-top:8px"><strong>Device Capabilities</strong></div>
+        <pre id="capabilities">-</pre>
+
+        <div style="margin-top:8px"><strong>Sender Params / Stats</strong></div>
+        <pre id="sender">-</pre>
+      </div>
+    </div>
+
+    <div class="card split">
+      <div>
+        <h3 style="margin-top:0">Loopback Receiver</h3>
+        <p class="muted">Plays audio received from the local loopback peer. Useful to confirm send/receive and echo characteristics.</p>
+        <audio id="remoteAudio" controls autoplay style="width:100%;margin-top:8px"></audio>
+        <div style="margin-top:8px"><label>Auto-play remote volume</label>
+          <input id="remoteVol" type="range" min="0" max="1" step="0.01" value="0.9" style="width:100%"></div>
+      </div>
+
+      <div>
+        <h3 style="margin-top:0">Checks</h3>
+        <ul>
+          <li>Device supports DSP? <span id="supportsDSP">-</span></li>
+          <li>Browser applied processing? <span id="appliedDSP">-</span></li>
+          <li>Opus codec/bitrate (after negotiation)</li>
+        </ul>
+
+        <div style="margin-top:8px">
+          <label>Select input device</label>
+          <select id="deviceSelect" style="width:100%;margin-top:6px"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">How to embed</h3>
+      <p class="muted">Copy this file into your site and include it on a secure origin (https or localhost). The UI requires microphone permission.</p>
+      <p class="small">Tip: open <code>chrome://webrtc-internals</code> in a new tab for additional diagnostics while running loopback.</p>
+    </div>
+  </div>
+
+  <script>
+    // Helpers
+    const $ = id => document.getElementById(id);
+    const logEl = $('log');
+    const status = $('status');
+    const levelBar = $('levelBar');
+    const rmsValue = $('rmsValue');
+    const settingsEl = $('settings');
+    const capsEl = $('capabilities');
+    const senderEl = $('sender');
+    const remoteAudio = $('remoteAudio');
+    const deviceSelect = $('deviceSelect');
+
+    let stream = null;
+    let pc1 = null, pc2 = null; // loopback peers
+    let analyser = null, audioCtx = null, sourceNode = null;
+    let recorder = null, recordedChunks = [];
+    let statsInterval = null;
+
+    function appendLog(...args){
+      const t = new Date().toISOString().slice(11,23);
+      logEl.textContent = `[${t}] ` + args.map(a=> (typeof a === 'object' ? JSON.stringify(a,null,2) : String(a))).join(' ') + '\n' + logEl.textContent;
+    }
+
+    function showStatus(s){ status.textContent = s; }
+
+    async function listDevices(){
+      try{
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const inputs = devices.filter(d => d.kind === 'audioinput');
+        deviceSelect.innerHTML = '';
+        inputs.forEach(d => {
+          const opt = document.createElement('option');
+          opt.value = d.deviceId;
+          opt.textContent = d.label || ('Microphone ' + (deviceSelect.length+1));
+          deviceSelect.appendChild(opt);
+        });
+        appendLog('found devices', inputs.length);
+      }catch(e){ appendLog('enumerateDevices failed', e); }
+    }
+
+    async function startTest(){
+      try{
+        showStatus('requesting mic');
+        appendLog('requesting mic with exact:false constraints');
+        const deviceId = deviceSelect.value || undefined;
+        stream = await navigator.mediaDevices.getUserMedia({ audio: {
+          deviceId: deviceId ? { exact: deviceId } : undefined,
+          echoCancellation: { exact: false },
+          noiseSuppression: { exact: false },
+          autoGainControl: { exact: false },
+          voiceIsolation: { exact: false }
+        }});
+
+        showStatus('stream acquired');
+        appendLog('stream acquired');
+
+        const track = stream.getAudioTracks()[0];
+        settingsEl.textContent = JSON.stringify(track.getSettings(), null, 2);
+        capsEl.textContent = JSON.stringify(track.getCapabilities(), null, 2);
+
+        // Audio context + analyser
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        sourceNode = audioCtx.createMediaStreamSource(stream);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 1024;
+        sourceNode.connect(analyser);
+
+        // Start VU meter
+        requestAnimationFrame(updateMeter);
+
+        // Simple recorder (WebM/Opus via MediaRecorder)
+        recordedChunks = [];
+        try{
+          recorder = new MediaRecorder(stream);
+          recorder.ondataavailable = e => { if(e.data && e.data.size) recordedChunks.push(e.data); };
+          recorder.start();
+        }catch(e){ appendLog('MediaRecorder unavailable', e); }
+
+        showStatus('ready');
+
+      }catch(err){
+        appendLog('getUserMedia error', err);
+        showStatus('error');
+      }
+    }
+
+    function stopTest(){
+      if(recorder && recorder.state !== 'inactive') recorder.stop();
+      if(stream){ stream.getTracks().forEach(t=>t.stop()); stream = null; }
+      if(audioCtx){ audioCtx.close(); audioCtx = null; }
+      settingsEl.textContent = '-';
+      capsEl.textContent = '-';
+      showStatus('stopped');
+      appendLog('test stopped');
+      if(pc1){ pc1.close(); pc1 = null; }
+      if(pc2){ pc2.close(); pc2 = null; }
+      remoteAudio.srcObject = null;
+      if(statsInterval) { clearInterval(statsInterval); statsInterval = null; }
+    }
+
+    function updateMeter(){
+      if(!analyser) return;
+      const buf = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteTimeDomainData(buf);
+      // compute RMS
+      let sum = 0;
+      for(let i=0;i<buf.length;i++){ const v = (buf[i]-128)/128; sum += v*v; }
+      const rms = Math.sqrt(sum / buf.length);
+      const pct = Math.min(1, rms*4); // scale for visibility
+      levelBar.style.width = Math.max(2, pct*100) + '%';
+      rmsValue.textContent = rms.toFixed(3);
+      requestAnimationFrame(updateMeter);
+    }
+
+    async function runLoopback(){
+      if(!stream){ appendLog('start test first'); return; }
+      appendLog('starting loopback (local pc pair)');
+
+      // Create two peers and wire them locally
+      pc1 = new RTCPeerConnection();
+      pc2 = new RTCPeerConnection();
+
+      // Add remote audio sink
+      pc2.ontrack = ev => {
+        appendLog('pc2 ontrack');
+        remoteAudio.srcObject = ev.streams[0];
+      };
+
+      // ICE candidate exchange
+      pc1.onicecandidate = e => { if(e.candidate) pc2.addIceCandidate(e.candidate).catch(console.warn); };
+      pc2.onicecandidate = e => { if(e.candidate) pc1.addIceCandidate(e.candidate).catch(console.warn); };
+
+      // add local track to pc1
+      stream.getTracks().forEach(t => pc1.addTrack(t, stream));
+
+      const offer = await pc1.createOffer();
+      await pc1.setLocalDescription(offer);
+      await pc2.setRemoteDescription(pc1.localDescription);
+
+      const answer = await pc2.createAnswer();
+      await pc2.setLocalDescription(answer);
+      await pc1.setRemoteDescription(pc2.localDescription);
+
+      appendLog('loopback established');
+      showStatus('loopback');
+
+      // collect sender params & periodic stats
+      const sender = pc1.getSenders()[0];
+      senderEl.textContent = JSON.stringify(sender.getParameters(), null, 2);
+
+      statsInterval = setInterval(async ()=>{
+        try{
+          const stats = await pc1.getStats();
+          // find outbound-rtp for audio
+          let out = [];
+          stats.forEach(report=>{ if(report.type && report.type.includes('outbound-rtp') && report.kind==='audio') out.push(report); });
+          senderEl.textContent = JSON.stringify(out.slice(0,3), null, 2);
+        }catch(e){ appendLog('stats error', e); }
+      }, 1500);
+    }
+
+    function downloadSample(){
+      if(!recordedChunks || recordedChunks.length===0){ appendLog('no recorded sample'); return; }
+      const blob = new Blob(recordedChunks, { type: recordedChunks[0].type || 'audio/webm' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'webrtc-audio-sample.webm';
+      document.body.appendChild(a); a.click(); a.remove();
+      appendLog('download started');
+    }
+
+    // wire UI
+    $('btnStart').addEventListener('click', async ()=>{ await listDevices(); await startTest(); });
+    $('btnStop').addEventListener('click', stopTest);
+    $('btnLoopback').addEventListener('click', runLoopback);
+    $('btnDownload').addEventListener('click', downloadSample);
+
+    // populate devices on load
+    (async ()=>{ await listDevices(); navigator.mediaDevices.addEventListener('devicechange', listDevices); })();
+
+    // remote volume control
+    $('remoteVol').addEventListener('input', ()=>{ remoteAudio.volume = Number($('remoteVol').value); });
+
+  </script>
+</body>
 </html>
+
