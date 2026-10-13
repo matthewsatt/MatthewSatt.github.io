@@ -1,312 +1,698 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>Matthew Satterwhite</title>
-    <meta name="description" content="Matthew Satterwhites&#x27;s Portfolio" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/379ac8ceab.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matthew Satterwhite — Full-Stack Engineer · WebRTC &amp; Real-Time Video</title>
+  <meta name="description" content="Matthew Satterwhite is a full-stack software engineer who owns the whole system — Vue and React interfaces, Java, Go and Python services, Postgres, and the WebRTC layer that streams live video between them.">
+  <link rel="canonical" href="https://matthewsatt.github.io/">
+  <meta name="theme-color" content="#09090a">
+  <meta name="color-scheme" content="dark light">
 
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://matthewsatt.github.io/">
+  <meta property="og:title" content="Matthew Satterwhite — Database to pixel. In real time.">
+  <meta property="og:description" content="Full-stack software engineer specializing in WebRTC and live video. Run the live demo — a real RTCPeerConnection, in your browser.">
+  <meta property="og:image" content="https://matthewsatt.github.io/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <script>
+    (function () {
+      var d = document.documentElement, t;
+      d.classList.add('js');
+      try { t = localStorage.getItem('ms-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      d.dataset.theme = t;
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
+
+  <script type="module" src="assets/js/site.js"></script>
+  <script type="module" src="assets/js/live-lab.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MV5474KCZE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-MV5474KCZE');
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Matthew Satterwhite",
+      "jobTitle": "Software Engineer",
+      "url": "https://matthewsatt.github.io/",
+      "image": "https://matthewsatt.github.io/assets/img/me.jpg",
+      "email": "mailto:matthewsatterwhitems@gmail.com",
+      "worksFor": { "@type": "Organization", "name": "Civicom" },
+      "sameAs": [
+        "https://github.com/MatthewSatt",
+        "https://www.linkedin.com/in/matthew-satterwhite-008970211/"
+      ],
+      "knowsAbout": ["WebRTC", "Real-time video", "WebSockets", "Full-stack web development", "Vue.js", "React", "Java", "Go", "Python", "PostgreSQL"]
+    }
+  </script>
 </head>
 
-<body data-smooth-scroll-offset="77">
-    <div class="nav-container"> </div>
-    <div class="main-container">
-        <section class="switchable feature-large feature-large-13 switchable--switch">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div>
-                    <div class="col-md-6"> <img alt="Image" class="border--round box-shadow-wide" src="./me.jpeg">
-                    </div>
-                    <div class="col-md-6 col-lg-5">
-                        <div class="switchable__text">
-                            <h2>Matthew Satterwhite</h2>
-                            <p class="lead">Hello! My name is Matthew Satterwhite and I am a software developer with experience in designing and creating complex web applications using Javascript, React, Redux, Python, Express.js, Flask, and PostgreSQL. I've always enjoyed solving tricky problems and bringing designs to life through code.
-                               </p>
-                        <div class="theskills">
-                            <div class="text-block">
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 5H7a2 2 0 0 0-2 2v8"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5v14M15.5 5v14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7.5 5.5v13l11-6.5z"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="m15.5 10.5 6-3.5v10l-6-3.5"/></symbol>
+    <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="5.2" cy="5.2" r="2.2"/><rect x="3.3" y="9" width="3.8" height="12" rx=".6"/><path d="M9.6 9h3.6v1.7c.6-1.1 2-2 4-2 3.6 0 4.3 2.4 4.3 5.4V21h-3.8v-6c0-1.5-.3-2.9-2-2.9-1.8 0-2.3 1.3-2.3 2.9v6H9.6z"/></g></symbol>
+  </svg>
 
-                                <br>
-                            </div>
-                        </div>
-                    </div>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"></div>
 
-
-                </div>
-                <div style="display: flex;">
-                      <div>
-                          <img class="skill" src="javascript.svg" alt="JavaScript" srcset="">
-                      </div>
-                      <div>
-                          <img class="skill" src="python.svg" alt="Python" srcset="">
-                      </div>
-                      <div>
-                          <img class="skill" src="react.svg" alt="React" srcset="">
-                      </div>
-                      <div>
-                          <img class="skill" src="redux.svg" alt="Redux" srcset="">
-                      </div>
-                      <div>
-                          <img class="skill" src="node-js.svg" alt="Node" srcset="">
-
-                      </div>
-                      <div>
-
-                          <img class="skill" src="html5.svg" alt="HTML5" srcset="">
-                      </div>
-                      <div>
-                          <img class="skill" src="docker.svg" alt="Docker" srcset="">
-                      </div>
-                      <div>
-                          <img class="skill" src="postgresql.svg" alt="PostgresSQL" srcset="">
-                      </div>
-                      <div>
-                          <img class="skill" src="css3.svg" alt="CSS3" srcset="">
-                      </div>
-                      <div>
-                          <img class="skill" src="sqlA.svg" alt="sqlAlchemy" srcset="" >
-                      </div>
-                      <div>
-                          <img class="skill" src="vs.svg" alt="vsCode" srcset="">
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="text-center bg--primary">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <a href="resume.pdf" class="block inner-link" target="_blank">
-                            <div class="feature boxed boxed--border border--round"> <i
-                                    class="material-icons icon--lg">picture_as_pdf</i> <span class="h5 color--primary">
-                                    <p>Resume</p>
-                                </span> </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="mailto:matthewSatterwhiteMs@gmail.com" class="block" target="_blank">
-                            <div class="feature boxed boxed--border border--round"> <i
-                                    class="socicon-google icon--lg"></i> <span class="h5 color--primary">
-                                    <p>Email</p>
-                                </span> </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="https://www.linkedin.com/in/matthew-satterwhite-008970211/" class="block" target="_blank">
-                            <div class="feature boxed boxed--border border--round"> <i
-                                    class="socicon-linkedin icon--lg"></i> <span class="h5 color--primary">
-                                    <p>LinkedIn</p>
-                                </span> </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="https://github.com/MatthewSatt" class="block" target="_blank">
-                            <div class="feature boxed boxed--border border--round"> <i
-                                    class="socicon-github icon--lg"></i> <span class="h5 color--primary">
-                                    <p>GitHub<br></p>
-                                </span> </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="bg--secondary">
-            <p class="lead test myproj">Recent Projects</p>
-            <div class="container">
-                <div class="masonry">
-                    <div class="masonry__container row masonry--active">
-
-
-
-
-                        <div class="col-md-4 masonry__item">
-                            <div class="card card-2 text-center">
-                                <div class="card__top">
-                                    <a href="https://mattsamazonclone.herokuapp.com/"> <img class='projimage' alt="Image"
-                                            src="./amazon.png"> </a>
-                                </div>
-                                <div class="card__body">
-                                    <h4>Amazon</h4> <span class="type--fade">Amazon Clone</span>
-                                    <p>Amazon allows users to create accounts, view store items, and purchase any desired products.</p>
-                                    <div class="projectholder">
-                                        <img class="project" src="python.svg" alt="Python" srcset="">
-                                        <img class="project" src="sqlA.svg" alt="sqlAlchemy" srcset="">
-                                        <img class="project" src="react.svg" alt="React" srcset="">
-                                        <img class="project" src="redux.svg" alt="Redux" srcset="">
-                                        <img class="project" src="css3.svg" alt="CSS3" srcset="">
-                                        <img class="project" src="postgresql.svg" alt="CSS3" srcset="">
-                                        <img class="project" src="javascript.svg" alt="JavaScript" srcset="">
-                                        <img class="project" src="vs.svg" alt="vsCode" srcset="">
-                                        <img class="project" src="docker.svg" alt="Docker" srcset=""><br>
-                                    </div>
-                                </div>
-                                <div class="card__bottom text-center">
-                                    <div class="card__action"> <span class="h6 type--uppercase">
-                                            <p>live</p>
-                                        </span>
-                                        <a href="http://mattsamazonclone.herokuapp.com/" target="_blank"> <i
-                                                class="material-icons">web_asset</i> </a>
-                                    </div>
-                                    <div class="card__action"> <span class="h6 type--uppercase">
-                                            <p>github</p>
-                                        </span>
-                                        <a href="https://github.com/MatthewSatt/Amazon_clone" target="_blank"> <i
-                                                class="socicon-github"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div class="col-md-4 masonry__item">
-                            <div class="card card-2 text-center">
-                                <div class="card__top">
-                                    <a href="https://appmood.herokuapp.com/"> <img class='projimage' alt="Image"
-                                            src="./mood.png"></a>
-                                </div>
-                                <div class="card__body">
-                                    <h4>mood</h4><span class="type--fade">Music Application</span>
-                                    <p>mood is an application where users can store, organize, and listen to their music.</p>
-                                    <div class="projectholder">
-                                        <img class="project" src="python.svg" alt="Python" srcset="">
-                                        <img class="project" src="sqlA.svg" alt="sqlAlchemy" srcset="">
-                                        <img class="project" src="react.svg" alt="React" srcset="">
-                                        <img class="project" src="redux.svg" alt="Redux" srcset="">
-                                        <img class="project" src="css3.svg" alt="CSS3" srcset="">
-                                        <img class="project" src="postgresql.svg" alt="CSS3" srcset="">
-                                        <img class="project" src="javascript.svg" alt="JavaScript" srcset="">
-                                        <img class="project" src="vs.svg" alt="vsCode" srcset="">
-                                        <img class="project" src="docker.svg" alt="Docker" srcset=""><br>
-                                    </div>
-                                </div>
-                                <div class="card__bottom text-center">
-                                    <div class="card__action"> <span class="h6 type--uppercase">
-                                            <p>Live</p>
-                                        </span>
-                                        <a href="https://appmood.herokuapp.com/" target="_blank"> <i
-                                                class="material-icons">web_asset</i> </a>
-                                    </div>
-                                    <div class="card__action"> <span class="h6 type--uppercase">
-                                            <p>Github</p>
-                                        </span>
-                                        <a href="https://github.com/MatthewSatt/mood" target="_blank"> <i
-                                                class="socicon-github"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="col-md-4 masonry__item">
-                            <div class="card card-2 text-center">
-                                <div class="card__top">
-                                    <a href="http://udderly-forgetful.herokuapp.com/"> <img class='projimage' alt="Image"
-                                            src="udderly.png"> </a>
-                                </div>
-                                <div class="card__body">
-                                    <h4>Udderly ForgetFul</h4> <span class="type--fade">Remember the Milk Clone</span>
-                                    <p>Udderly Forgetful allows users to create to-do lists and store individual tasks on each.</p>
-                                    <div class="projectholder">
-                                        <img class="project" src="javascript.svg" alt="JavaScript" srcset="">
-                                        <img class="project" src="node-js.svg" alt="Node" srcset="">
-                                        <img class="project" src="html5.svg" alt="HTML5" srcset="">
-                                        <img class="project" src="css3.svg" alt="CSS3" srcset="">
-                                        <img class="project" src="postgresql.svg" alt="CSS3" srcset="">
-                                        <img class="project" style="top: 0px;" src="vs.svg" alt="vsCode" srcset=""><br>
-                                    </div>
-                                </div>
-                                <div class="card__bottom text-center">
-                                    <div class="card__action"> <span class="h6 type--uppercase">
-                                            <p>live</p>
-                                        </span>
-                                        <a href="https://udderly-forgetful.herokuapp.com/" target="_blank"> <i
-                                                class="material-icons">web_asset</i> </a>
-                                    </div>
-                                    <div class="card__action"> <span class="h6 type--uppercase">
-                                            <p>github</p>
-                                        </span>
-                                        <a href="https://github.com/codylavene/udderly_forgetful" target="_blank"> <i
-                                                class="socicon-github"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
-                        <div class="col-md-4 masonry__item">
-                            <div class="card card-2 text-center">
-                                <div class="card__top">
-                                    <a href="https://the-stonks-app.herokuapp.com/"> <img class='projimage' alt="Image"
-                                            src="./stonks.png"> </a>
-                                </div>
-                                <div class="card__body">
-                                    <h4>The Stonks</h4> <span class="type--fade">Robinhood Clone</span>
-                                    <p> The Stonks is an investment practice site that was inspired by popular investing site RobinHood. </p>
-                                    <div class="projectholder">
-                                        <img class="project" src="python.svg" alt="Python" srcset="">
-                                        <img class="project" src="sqlA.svg" alt="sqlAlchemy" srcset="">
-                                        <img class="project" src="react.svg" alt="React" srcset="">
-                                        <img class="project" src="redux.svg" alt="Redux" srcset="">
-                                        <img class="project" src="css3.svg" alt="CSS3" srcset="">
-                                        <img class="project" src="postgresql.svg" alt="CSS3" srcset="">
-                                        <img class="project" src="javascript.svg" alt="JavaScript" srcset="">
-                                        <img class="project" src="vs.svg" alt="vsCode" srcset="">
-                                        <img class="project" src="docker.svg" alt="Docker" srcset=""><br>
-                                    </div>
-                                </div>
-                                <div class="card__bottom text-center">
-                                    <div class="card__action"> <span class="h6 type--uppercase">
-                                            <p>live</p>
-                                        </span>
-                                        <a href="https://the-stonks-app.herokuapp.com/" target="_blank"> <i
-                                                class="material-icons">web_asset</i> </a>
-                                    </div>
-                                    <div class="card__action"> <span class="h6 type--uppercase">
-                                            <p>github</p>
-                                        </span>
-                                        <a href="https://github.com/MatthewSatt/Stonks_Project_w19" target="_blank"> <i
-                                                class="socicon-github"></i> </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-        </section>
+  <header class="nav" data-nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Matthew Satterwhite — home">
+        <span class="brand-mark" aria-hidden="true">MS</span>
+        <span class="brand-name">Matthew Satterwhite</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#lab">Live demo</a>
+        <a href="#stack">Stack</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="cmdk" type="button" data-palette-open aria-label="Open command menu">
+          <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+          <span class="cmdk-text">Search</span>
+          <kbd data-mod-key>⌘K</kbd>
+        </button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle color theme">
+          <svg class="i i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="i i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+        <a class="btn btn-sm btn-ghost nav-resume" href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+        <button class="icon-btn nav-menu" type="button" data-palette-open aria-label="Open menu">
+          <svg class="i" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
     </div>
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/parallax.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/smooth-scroll.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script>
-        (function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'G-MV5474KCZE', 'auto'); ga('send', 'pageview');
-    </script>
+  </header>
 
+  <main id="main">
+    <!-- ───────────────────────── Hero ───────────────────────── -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="eyebrow">
+          <img src="assets/img/me.jpg" width="320" height="320" alt="" decoding="async">
+          <span>Matthew Satterwhite</span>
+          <span class="eyebrow-sep" aria-hidden="true"></span>
+          <span class="eyebrow-role">Software Engineer</span>
+        </p>
+
+        <h1 class="display" id="hero-title">
+          <span class="line">Database to pixel.</span>
+          <span class="line">In <em>real time.</em></span>
+        </h1>
+
+        <div class="hero-foot">
+          <div>
+            <p class="lede">
+              I own the whole system: <strong>interfaces</strong> in Vue and React, <strong>services</strong> in Java, Go and Python,
+              <strong>data</strong> in Postgres, and the <strong>WebRTC</strong> and WebSocket layers that stream live video, audio
+              and state between them.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#work">See the work <svg class="i arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="btn" href="#contact">Get in touch</a>
+              <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-file"/></svg> Résumé</a>
+            </div>
+          </div>
+
+          <dl class="spec">
+            <div><dt>Now</dt><dd>Software Engineer, Civicom</dd></div>
+            <div><dt>Shipping</dt><dd>Production software since 2022 <span class="dim">· <span data-years-since="2022-07">4</span>+ yrs</span></dd></div>
+            <div><dt>Full stack</dt><dd>Vue · React · Java · Go · Python · Postgres</dd></div>
+            <div><dt>Specialty</dt><dd>WebRTC · live video · WebSockets</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── Live lab ───────────────────────── -->
+    <section class="lab" id="lab" aria-labelledby="lab-title">
+      <div class="container">
+        <div class="lab-head">
+          <p class="section-label">01 — Live demo</p>
+          <h2 class="lab-title" id="lab-title">
+            This is a live WebRTC call. <span class="dim">Two peers, one tab, zero servers.</span>
+          </h2>
+          <p class="lab-hint">Try it: drag the bitrate cap down to 100&nbsp;kbps and watch the encoder adapt.</p>
+        </div>
+
+        <div class="monitor" data-lab data-state="idle">
+          <div class="mon-bar">
+            <span class="tally"><i aria-hidden="true"></i><span data-tally>STANDBY</span></span>
+            <span class="mon-addr">rtc://loopback · pc1 → pc2</span>
+            <span class="mon-spacer"></span>
+            <span class="mon-chip" data-conn>idle</span>
+            <span class="mon-tc" data-timecode aria-label="Timecode">00:00:00:00</span>
+            <button class="mon-pause" type="button" data-pause aria-pressed="false" aria-label="Pause live demo">
+              <svg class="i i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+              <svg class="i i-play" aria-hidden="true"><use href="#i-play"/></svg>
+            </button>
+          </div>
+
+          <div class="mon-body">
+            <div class="screen">
+              <video data-rx muted playsinline autoplay aria-label="Video received over the WebRTC peer connection"></video>
+              <span class="screen-tag">Received · post-decode</span>
+              <div class="pip">
+                <canvas data-tx width="960" height="540" aria-label="Source frames before encoding"></canvas>
+                <span class="screen-tag">Source · pre-encode</span>
+              </div>
+              <div class="screen-overlay" data-overlay>
+                <div class="overlay-card">
+                  <p class="overlay-title" data-overlay-title>Ready when you are.</p>
+                  <p class="overlay-text" data-overlay-text>Spin up two RTCPeerConnections in this tab and stream a live signal between them.</p>
+                  <button class="btn btn-primary btn-sm" type="button" data-start>
+                    <svg class="i" aria-hidden="true"><use href="#i-play"/></svg> Go live
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="console">
+              <div class="stat-hero">
+                <div class="stat-row">
+                  <span class="stat-label">Bitrate · sent</span>
+                  <span class="stat-label stat-cap">cap <span data-cap-label>2.5 Mbps</span></span>
+                </div>
+                <p class="stat-big"><span data-stat="bitrate">—</span><span class="unit" data-stat="bitrate-unit"></span></p>
+                <svg class="spark" data-spark viewBox="0 0 300 72" preserveAspectRatio="none" role="img" aria-label="Sent bitrate over the last 60 seconds">
+                  <defs>
+                    <linearGradient id="spark-fill" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0" stop-color="#c6ff3d" stop-opacity=".28"/>
+                      <stop offset="1" stop-color="#c6ff3d" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <line class="spark-cap" data-spark-cap x1="0" x2="300" y1="-10" y2="-10"/>
+                  <path class="spark-area" data-spark-area d=""/>
+                  <path class="spark-line" data-spark-line d=""/>
+                </svg>
+              </div>
+              <dl class="stat-grid">
+                <div class="stat"><dt>Codec</dt><dd data-stat="codec">—</dd></div>
+                <div class="stat"><dt>Resolution</dt><dd data-stat="resolution">—</dd></div>
+                <div class="stat"><dt>Frame rate</dt><dd data-stat="fps">—</dd></div>
+                <div class="stat"><dt>Round trip</dt><dd data-stat="rtt">—</dd></div>
+                <div class="stat"><dt>Jitter</dt><dd data-stat="jitter">—</dd></div>
+                <div class="stat"><dt>Packets lost</dt><dd data-stat="lost">—</dd></div>
+              </dl>
+              <div class="stat-foot">
+                <span class="stat-label">Limited by</span>
+                <span data-stat="limit">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mon-controls">
+            <div class="ctl">
+              <span class="ctl-label" id="ctl-source">Source</span>
+              <div class="seg" role="group" aria-labelledby="ctl-source" data-control="source">
+                <button type="button" data-value="signal" aria-pressed="true">Test signal</button>
+                <button type="button" data-value="camera" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="#i-camera"/></svg> Camera</button>
+              </div>
+            </div>
+            <div class="ctl">
+              <span class="ctl-label" id="ctl-effect">Shader</span>
+              <div class="seg" role="group" aria-labelledby="ctl-effect" data-control="effect">
+                <button type="button" data-value="raw" aria-pressed="true">Raw</button>
+                <button type="button" data-value="thermal" aria-pressed="false">Thermal</button>
+                <button type="button" data-value="edges" aria-pressed="false">Edges</button>
+                <button type="button" data-value="dither" aria-pressed="false">Dither</button>
+              </div>
+            </div>
+            <div class="ctl">
+              <span class="ctl-label" id="ctl-codec">Codec</span>
+              <div class="seg" role="group" aria-labelledby="ctl-codec" data-control="codec">
+                <button type="button" data-value="vp8" aria-pressed="false">VP8</button>
+                <button type="button" data-value="vp9" aria-pressed="false">VP9</button>
+                <button type="button" data-value="h264" aria-pressed="false">H.264</button>
+                <button type="button" data-value="av1" aria-pressed="false">AV1</button>
+              </div>
+            </div>
+            <div class="ctl ctl-range">
+              <label class="ctl-label" for="bitrate">Bitrate cap</label>
+              <input id="bitrate" type="range" min="0" max="1000" value="817" step="1" data-bitrate>
+              <output for="bitrate" class="ctl-out" data-bitrate-out>2.5 Mbps</output>
+            </div>
+          </div>
+
+          <div class="mon-foot">
+            <ol class="pipeline" aria-label="Media pipeline">
+              <li class="node" data-node="source"><b>Source</b><span>Canvas 960×540</span></li>
+              <li class="link" aria-hidden="true"></li>
+              <li class="node" data-node="shader"><b>Shader</b><span>WebGL · raw</span></li>
+              <li class="link" aria-hidden="true"></li>
+              <li class="node" data-node="encoder"><b>Encoder</b><span>—</span></li>
+              <li class="link" aria-hidden="true"></li>
+              <li class="node" data-node="transport"><b>Transport</b><span>SRTP · ICE</span></li>
+              <li class="link" aria-hidden="true"></li>
+              <li class="node" data-node="decoder"><b>Decoder</b><span>—</span></li>
+              <li class="link" aria-hidden="true"></li>
+              <li class="node" data-node="output"><b>Output</b><span>&lt;video&gt;</span></li>
+            </ol>
+            <ol class="log" data-log aria-label="Event log"></ol>
+          </div>
+        </div>
+
+        <div class="lab-notes">
+          <div>
+            <h3>Generated, not recorded</h3>
+            <p>Every frame is drawn by your browser as you watch, or captured from your camera if you allow it. Both peers live in this tab, so no frame ever leaves your device.</p>
+          </div>
+          <div>
+            <h3>Real encode, real transport</h3>
+            <p>Frames run through a GLSL shader, get compressed by your browser's video encoder, and travel as SRTP packets over an ICE-negotiated <code>RTCPeerConnection</code>.</p>
+          </div>
+          <div>
+            <h3>Real controls</h3>
+            <p>The bitrate cap is applied live with <code>RTCRtpSender.setParameters()</code>. Codec switches renegotiate SDP on the fly. Every number comes straight from <code>getStats()</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── Stack ───────────────────────── -->
+    <section class="section" id="stack" aria-labelledby="stack-title">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="section-label">02 — Stack</p>
+            <h2 id="stack-title">One engineer.<br><em>Every layer.</em></h2>
+          </div>
+          <p class="section-intro">Most engineers pick a side of the wire. I work both sides, and the wire itself. Five layers, one person accountable for how they fit together.</p>
+        </header>
+
+        <ol class="layers">
+          <li class="layer" data-reveal>
+            <span class="layer-idx">L5</span>
+            <div class="layer-main">
+              <h3>Interface</h3>
+              <p>Interfaces that feel instant. Component architectures that stay maintainable as they grow, reactive state that never lies to the user, and real care for layout, motion and accessibility.</p>
+            </div>
+            <ul class="tags">
+              <li>Vue 3</li><li>Composition API</li><li>Pinia</li><li>React</li><li>Redux</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Canvas</li><li>WebGL</li><li>SwiftUI</li><li>UIKit</li>
+            </ul>
+          </li>
+          <li class="layer layer--hot" data-reveal>
+            <span class="layer-idx">L4</span>
+            <div class="layer-main">
+              <h3>Real-time <span class="layer-badge">specialty</span></h3>
+              <p>Live video, audio and state. I handle capture, processing, encoding, transport and rendering of media in the browser, plus the diagnostics that tell you why a call looks or sounds wrong.</p>
+            </div>
+            <ul class="tags">
+              <li>WebRTC</li><li>RTCPeerConnection</li><li>SDP · ICE · STUN · TURN</li><li>getUserMedia</li><li>getStats</li><li>Web Audio</li><li>MediaRecorder</li><li>WebSockets</li><li>MediaPipe</li>
+            </ul>
+          </li>
+          <li class="layer" data-reveal>
+            <span class="layer-idx">L3</span>
+            <div class="layer-main">
+              <h3>Services</h3>
+              <p>APIs that hold up. I design endpoints around the data, put authentication where it belongs, and treat performance and scalability as features, not cleanup.</p>
+            </div>
+            <ul class="tags">
+              <li>Java EE</li><li>Go</li><li>Gin</li><li>Python</li><li>Flask</li><li>Node.js</li><li>Express</li><li>Bun</li><li>REST</li><li>JWT</li>
+            </ul>
+          </li>
+          <li class="layer" data-reveal>
+            <span class="layer-idx">L2</span>
+            <div class="layer-main">
+              <h3>Data</h3>
+              <p>Schemas designed around the queries that will actually run, transactional integrity where it matters, and caching where it pays off.</p>
+            </div>
+            <ul class="tags">
+              <li>PostgreSQL</li><li>SQL</li><li>SQLAlchemy</li><li>GORM</li><li>Sequelize</li><li>Caching</li>
+            </ul>
+          </li>
+          <li class="layer" data-reveal>
+            <span class="layer-idx">L1</span>
+            <div class="layer-main">
+              <h3>Platform</h3>
+              <p>Shipped, tested, operated. Containerized, version-controlled and covered by end-to-end tests, all the way to the Chrome Web Store.</p>
+            </div>
+            <ul class="tags">
+              <li>Docker</li><li>AWS</li><li>Git</li><li>GitHub</li><li>Playwright</li><li>Jest</li><li>TDD</li><li>Chrome Extensions</li><li>Electron</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── Experience ───────────────────────── -->
+    <section class="section" id="experience" aria-labelledby="xp-title">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="section-label">03 — Experience</p>
+            <h2 id="xp-title">In production<br><em>since 2022.</em></h2>
+          </div>
+          <p class="section-intro">I build real software for real users, and I'm on the hook for it after it ships.</p>
+        </header>
+
+        <div class="xp">
+          <article class="xp-item xp-item--main" data-reveal>
+            <div class="xp-meta">
+              <span class="xp-when">Jul 2022 — Present</span>
+              <span class="xp-dur" data-duration-since="2022-07"></span>
+            </div>
+            <div class="xp-body">
+              <h3>Software Engineer <span class="at">Civicom</span></h3>
+              <p class="xp-summary">Full-stack engineer on a production Java EE and Vue 3 web application. I own features from the server logic to the last pixel of the interface.</p>
+              <ul class="xp-points">
+                <li><strong>Built the real-time layer.</strong> Set up and configured the WebSocket server and wired it into Vue 3 Composition API state, using reactive refs, computed properties and watchers so every client's UI updates the moment the server does.</li>
+                <li><strong>Made it faster and more scalable.</strong> Optimized code and added caching and other performance work across the application.</li>
+                <li><strong>Turned requirements into shipped features.</strong> I work with senior engineers, product managers and cross-functional teams from design through delivery.</li>
+                <li><strong>Find root causes.</strong> I track production issues down through the whole stack and fix them where they start.</li>
+              </ul>
+              <ul class="tags tags--sm">
+                <li>Java EE</li><li>Vue 3</li><li>Composition API</li><li>WebSockets</li><li>Caching</li><li>Git</li><li>Agile</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="xp-item" data-reveal>
+            <div class="xp-meta"><span class="xp-when">2021 — 2022</span></div>
+            <div class="xp-body">
+              <h3>Full-Stack Software Engineering <span class="at">App Academy</span></h3>
+              <p class="xp-summary">Full-time immersive program covering JavaScript, Python, React, Redux, Express, Flask, PostgreSQL and test-driven development.</p>
+            </div>
+          </article>
+
+          <article class="xp-item" data-reveal>
+            <div class="xp-meta"><span class="xp-when">2022</span></div>
+            <div class="xp-body">
+              <h3>Certified Cloud Practitioner <span class="at">Amazon Web Services</span></h3>
+            </div>
+          </article>
+
+          <article class="xp-item" data-reveal>
+            <div class="xp-meta"><span class="xp-when">2017 — 2021</span></div>
+            <div class="xp-body">
+              <h3>Psychology <span class="at">CSU San Marcos · MiraCosta College (A.A.)</span></h3>
+              <p class="xp-summary">Why I care how software feels to the person using it, not just whether it works.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── Work ───────────────────────── -->
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="section-label">04 — Work</p>
+            <h2 id="work-title">Selected<br><em>work.</em></h2>
+          </div>
+          <p class="section-intro">Real-time media, shipped tools and full-stack products, from live video pipelines to an extension on the Chrome Web Store.</p>
+        </header>
+
+        <div class="bento">
+          <!-- Live Video Lab -->
+          <article class="card span-7" data-reveal>
+            <div class="card-visual vis-rtc" aria-hidden="true">
+              <svg viewBox="0 0 640 340" fill="none">
+                <text class="v-cap" x="320" y="40" text-anchor="middle">RTCPeerConnection · loopback</text>
+                <rect class="v-node" x="40" y="74" width="150" height="196" rx="14"/>
+                <text class="v-node-title" x="62" y="108">pc1</text>
+                <text class="v-node-sub" x="62" y="128">sendonly</text>
+                <text class="v-node-sub dim" x="62" y="236">captureStream()</text>
+                <text class="v-node-sub dim" x="62" y="254">setParameters()</text>
+                <rect class="v-node" x="450" y="74" width="150" height="196" rx="14"/>
+                <text class="v-node-title" x="472" y="108">pc2</text>
+                <text class="v-node-sub" x="472" y="128">recvonly</text>
+                <text class="v-node-sub dim" x="472" y="236">ontrack</text>
+                <text class="v-node-sub dim" x="472" y="254">getStats()</text>
+
+                <text class="v-lane-label" x="320" y="104" text-anchor="middle">SDP offer</text>
+                <path class="v-lane" d="M196 114H440"/><path class="v-head" d="m432 109 8 5-8 5"/>
+                <text class="v-lane-label" x="320" y="142" text-anchor="middle">SDP answer</text>
+                <path class="v-lane" d="M200 152H444"/><path class="v-head" d="m208 147-8 5 8 5"/>
+                <text class="v-lane-label" x="320" y="180" text-anchor="middle">ICE candidates</text>
+                <path class="v-lane v-lane--dash" d="M200 190H440"/>
+                <text class="v-lane-label v-lime" x="320" y="222" text-anchor="middle">SRTP · VP9 · 30 fps</text>
+                <path class="v-media" d="M196 236H444"/>
+                <g class="v-pkts">
+                  <rect class="v-pkt" x="196" y="231" width="14" height="10" rx="2"/>
+                  <rect class="v-pkt" x="196" y="231" width="14" height="10" rx="2"/>
+                  <rect class="v-pkt" x="196" y="231" width="14" height="10" rx="2"/>
+                  <rect class="v-pkt" x="196" y="231" width="14" height="10" rx="2"/>
+                </g>
+                <g class="v-chips">
+                  <rect x="168" y="292" width="92" height="26" rx="13"/><text x="214" y="309" text-anchor="middle">DTLS-SRTP</text>
+                  <rect x="270" y="292" width="100" height="26" rx="13"/><text x="320" y="309" text-anchor="middle">BWE · GCC</text>
+                  <rect x="380" y="292" width="92" height="26" rx="13"/><text x="426" y="309" text-anchor="middle">RTCP · NACK</text>
+                </g>
+              </svg>
+            </div>
+            <div class="card-body">
+              <p class="card-meta"><span>2026</span><span>This site</span></p>
+              <h3>Live Video Lab</h3>
+              <p>A dependency-free WebRTC pipeline. It takes procedural or camera frames, processes them in a WebGL shader, then lets you switch codecs live with SDP renegotiation, cap the bitrate through <code>setParameters</code>, and watch real-time <code>getStats()</code> telemetry.</p>
+              <ul class="tags tags--sm"><li>WebRTC</li><li>WebGL</li><li>MediaStream</li><li>getStats</li></ul>
+              <div class="card-actions">
+                <a href="#lab">Run it <svg class="i" aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+                <a href="https://github.com/MatthewSatt/MatthewSatt.github.io" target="_blank" rel="noopener">Source <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Audio self-test -->
+          <article class="card span-5" data-reveal>
+            <div class="card-visual vis-audio" aria-hidden="true">
+              <div class="va-top"><span>INPUT · RMS</span><span class="va-rms">0.214</span></div>
+              <div class="va-wave">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="va-chips"><span>EC off</span><span>NS off</span><span>AGC off</span><span class="va-lime">Opus · 48 kHz</span></div>
+            </div>
+            <div class="card-body">
+              <p class="card-meta"><span>2025</span><span>Diagnostics tool</span></p>
+              <h3>WebRTC Audio Self-Test</h3>
+              <p>Microphone diagnostics for real-time audio. It reads device capabilities, detects browser-applied DSP, shows live RMS metering, runs an Opus loopback over a peer connection with sender stats, and records downloadable samples.</p>
+              <ul class="tags tags--sm"><li>WebRTC</li><li>Web Audio</li><li>MediaRecorder</li><li>Opus</li></ul>
+              <div class="card-actions">
+                <a href="lab/audio-self-test.html">Launch <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Use the Force -->
+          <article class="card span-5" data-reveal>
+            <div class="card-visual vis-hand" aria-hidden="true">
+              <svg viewBox="0 0 320 240" fill="none">
+                <g class="h-float">
+                  <rect class="h-box" x="74" y="16" width="164" height="204" rx="6"/>
+                  <g class="h-bones">
+                    <path d="M160 206 130 191 108 166 96 141 88 118"/>
+                    <path d="M160 206 135 126 130 91 127 68 125 46"/>
+                    <path d="M135 126 158 121 158 81 158 56 158 32"/>
+                    <path d="M158 121 180 126 185 91 188 68 190 48"/>
+                    <path d="M180 126 200 136 210 111 216 94 221 76"/>
+                    <path d="M160 206 200 136"/>
+                  </g>
+                  <g class="h-joints">
+                    <circle cx="160" cy="206" r="4.5"/>
+                    <circle cx="130" cy="191" r="3.5"/><circle cx="108" cy="166" r="3.5"/><circle cx="96" cy="141" r="3.5"/><circle cx="88" cy="118" r="3.5"/>
+                    <circle cx="135" cy="126" r="3.5"/><circle cx="130" cy="91" r="3.5"/><circle cx="127" cy="68" r="3.5"/><circle cx="125" cy="46" r="3.5"/>
+                    <circle cx="158" cy="121" r="3.5"/><circle cx="158" cy="81" r="3.5"/><circle cx="158" cy="56" r="3.5"/><circle cx="158" cy="32" r="3.5"/>
+                    <circle cx="180" cy="126" r="3.5"/><circle cx="185" cy="91" r="3.5"/><circle cx="188" cy="68" r="3.5"/><circle cx="190" cy="48" r="3.5"/>
+                    <circle cx="200" cy="136" r="3.5"/><circle cx="210" cy="111" r="3.5"/><circle cx="216" cy="94" r="3.5"/><circle cx="221" cy="76" r="3.5"/>
+                  </g>
+                </g>
+              </svg>
+              <span class="vh-label">Open_Palm · 0.97</span>
+              <span class="vh-meta">21 landmarks · GPU delegate</span>
+            </div>
+            <div class="card-body">
+              <p class="card-meta"><span>2023</span><span>Machine vision</span></p>
+              <h3>Use the Force</h3>
+              <p>Gesture control from a live webcam feed. MediaPipe's GestureRecognizer runs in WASM on the GPU, classifies hand poses frame by frame, and turns thumbs-up, fist and open palm into movement on screen.</p>
+              <ul class="tags tags--sm"><li>MediaPipe</li><li>WASM</li><li>getUserMedia</li><li>Canvas</li></ul>
+              <div class="card-actions">
+                <a href="https://github.com/MatthewSatt/machine-vision" target="_blank" rel="noopener">Source <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Excel to JSON -->
+          <article class="card span-7" data-reveal>
+            <div class="card-visual vis-xl" aria-hidden="true">
+              <div class="xl-sheet">
+                <div class="xl-row xl-head"><span></span><span>A</span><span>B</span><span>C</span></div>
+                <div class="xl-row"><span>1</span><span class="b">id</span><span class="b">name</span><span class="b">role</span></div>
+                <div class="xl-row"><span>2</span><span>1</span><span>Ada</span><span>Engineer</span></div>
+                <div class="xl-row"><span>3</span><span>2</span><span>Grace</span><span>Architect</span></div>
+                <div class="xl-row"><span>4</span><span>3</span><span>Linus</span><span>Maintainer</span></div>
+                <div class="xl-row"><span>5</span><span></span><span></span><span></span></div>
+              </div>
+              <div class="xl-arrow"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></div>
+<pre class="xl-json"><span class="p">[</span>
+  <span class="p">{</span> <span class="k">"id"</span><span class="p">:</span> <span class="n">1</span><span class="p">,</span>
+    <span class="k">"name"</span><span class="p">:</span> <span class="s">"Ada"</span><span class="p">,</span>
+    <span class="k">"role"</span><span class="p">:</span> <span class="s">"Engineer"</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="k">"id"</span><span class="p">:</span> <span class="n">2</span><span class="p">,</span>
+    <span class="k">"name"</span><span class="p">:</span> <span class="s">"Grace"</span><span class="p">,</span>
+    <span class="k">"role"</span><span class="p">:</span> <span class="s">"Architect"</span> <span class="p">},</span>
+  <span class="p">…</span>
+<span class="p">]</span></pre>
+            </div>
+            <div class="card-body">
+              <p class="card-meta"><span>2025</span><span>Published · Chrome Web Store</span></p>
+              <h3>Excel → JSON Converter</h3>
+              <p>A Chrome extension that turns <code>.xls</code> and <code>.xlsx</code> files into clean JSON instantly. It's fully client-side, so the data never leaves the browser. You pick the worksheet, choose header and pretty-print options, then copy or download the result.</p>
+              <ul class="tags tags--sm"><li>Chrome Extensions</li><li>JavaScript</li><li>SheetJS</li></ul>
+              <div class="card-actions">
+                <a href="https://chromewebstore.google.com/detail/excel-to-json-converter/hbhehcbafpmmadmlojcpfgdeolllmpip" target="_blank" rel="noopener">Chrome Web Store <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                <a href="https://github.com/MatthewSatt/chromeExtensionExcelToJson" target="_blank" rel="noopener">Source <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- The Stonks -->
+          <article class="card span-6" data-reveal>
+            <div class="card-visual vis-shot" aria-hidden="true">
+              <div class="browser">
+                <div class="browser-bar"><i></i><i></i><i></i><span>the-stonks</span></div>
+                <img src="assets/img/stonks.jpg" width="1200" height="719" alt="" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-meta"><span>2022</span><span>Full-stack app</span></p>
+              <h3>The Stonks</h3>
+              <p>A Robinhood-inspired investing simulator. It pulls real-time market data from the Finnhub API, stores it with SQLAlchemy, and serves it through 15+ Flask blueprint routes built for fast queries.</p>
+              <ul class="tags tags--sm"><li>React</li><li>Redux</li><li>Flask</li><li>SQLAlchemy</li><li>PostgreSQL</li></ul>
+              <div class="card-actions">
+                <a href="https://github.com/MatthewSatt/Stonks_Project_w19" target="_blank" rel="noopener">Source <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Amazon -->
+          <article class="card span-6" data-reveal>
+            <div class="card-visual vis-shot" aria-hidden="true">
+              <div class="browser">
+                <div class="browser-bar"><i></i><i></i><i></i><span>amazon-clone</span></div>
+                <img src="assets/img/amazon.jpg" width="1200" height="750" alt="" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-meta"><span>2022</span><span>Full-stack app</span></p>
+              <h3>Amazon Clone</h3>
+              <p>A full e-commerce flow covering accounts, catalog and checkout. It uses a RESTful client–server architecture, 20+ composable React components, and Redux state for data streamed from the backend.</p>
+              <ul class="tags tags--sm"><li>React</li><li>Redux</li><li>Flask</li><li>SQLAlchemy</li><li>PostgreSQL</li><li>Docker</li></ul>
+              <div class="card-actions">
+                <a href="https://github.com/MatthewSatt/Amazon_clone" target="_blank" rel="noopener">Source <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="archive" data-reveal>
+          <h3 class="archive-title">Also built</h3>
+          <ul>
+            <li><a href="https://github.com/MatthewSatt/go-jwt" target="_blank" rel="noopener">
+              <span class="a-yr">2025</span><span class="a-name">Go auth &amp; real-time server</span>
+              <span class="a-stack">Gin · JWT · GORM · Postgres · WebSockets</span>
+              <span class="a-go">GitHub <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span></a></li>
+            <li><a href="https://github.com/MatthewSatt/bun-sockets" target="_blank" rel="noopener">
+              <span class="a-yr">2024</span><span class="a-name">Real-time chat on Bun</span>
+              <span class="a-stack">Bun · WebSockets · presence</span>
+              <span class="a-go">GitHub <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span></a></li>
+            <li><a href="https://github.com/MatthewSatt/GO-http-server" target="_blank" rel="noopener">
+              <span class="a-yr">2024</span><span class="a-name">Go REST API</span>
+              <span class="a-stack">Go · gorilla/mux · REST</span>
+              <span class="a-go">GitHub <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span></a></li>
+            <li><a href="https://github.com/MatthewSatt/playwright_example" target="_blank" rel="noopener">
+              <span class="a-yr">2024</span><span class="a-name">End-to-end test suite</span>
+              <span class="a-stack">Playwright · JavaScript</span>
+              <span class="a-go">GitHub <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span></a></li>
+            <li><a href="https://github.com/MatthewSatt/mood" target="_blank" rel="noopener">
+              <span class="a-yr">2022</span><span class="a-name">mood — music library</span>
+              <span class="a-stack">React · Redux · Flask · SQLAlchemy</span>
+              <span class="a-go">GitHub <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── Contact ───────────────────────── -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <p class="section-label">05 — Contact</p>
+        <h2 class="contact-title" id="contact-title">Have something <em>hard</em> to build?</h2>
+        <p class="section-intro">I'm at my best on problems that cross the whole stack, especially the ones that have to happen in real time. Tell me about yours.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary btn-lg" href="mailto:matthewsatterwhitems@gmail.com"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Email me</a>
+          <button class="copy-email" type="button" data-copy-email>
+            <span>matthewsatterwhitems@gmail.com</span>
+            <svg class="i i-copy" aria-hidden="true"><use href="#i-copy"/></svg>
+            <svg class="i i-check" aria-hidden="true"><use href="#i-check"/></svg>
+            <span class="sr-only" data-copy-status aria-live="polite"></span>
+          </button>
+        </div>
+        <ul class="socials">
+          <li><a href="https://github.com/MatthewSatt" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/matthew-satterwhite-008970211/" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn</a></li>
+          <li><a href="resume.pdf" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-file"/></svg> Résumé (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span data-year>2026</span> Matthew Satterwhite</span>
+      <span class="footer-built">Hand-built in HTML, CSS and vanilla JavaScript. No frameworks, no build step.</span>
+      <button class="footer-k" type="button" data-palette-open>Press <kbd data-mod-key>⌘K</kbd></button>
+    </div>
+  </footer>
+
+  <dialog class="palette" data-palette aria-label="Command menu">
+    <div class="palette-box">
+      <div class="palette-search">
+        <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+        <input type="text" data-palette-input placeholder="Jump to a section, copy email, open links…" autocomplete="off" spellcheck="false"
+               role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list">
+        <kbd>esc</kbd>
+      </div>
+      <ul class="palette-list" id="palette-list" role="listbox" data-palette-list></ul>
+      <div class="palette-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> select</span><span><kbd>esc</kbd> close</span></div>
+    </div>
+  </dialog>
 </body>
-
 </html>
-
